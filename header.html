@@ -1,0 +1,618 @@
+<header class="site-header">
+  <div class="header-wrap">
+    <a class="brand" href="index.html">
+      <!-- LOGO -->
+      <img
+        class="brand-logo"
+        src="media/download.jpg"
+        alt="شعار مواردي"
+        loading="lazy"
+        onerror="this.hidden=true; this.parentElement.querySelector('.brand-badge').style.display='grid';"
+      />
+
+      <!-- Fallback (يظهر فقط إذا فشل اللوجو) -->
+      <span class="brand-badge" style="display:none;">م</span>
+
+      <div class="brand-text">
+        <div class="brand-name">مواردي</div>
+        <div class="brand-sub">إدارة شركات توريد العمالة</div>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="nav" id="navMenu" aria-label="القائمة الرئيسية">
+      <a href="index.html" class="nav-link active">الرئيسية</a>
+      <a href="#" class="nav-link">شركات التوريد</a>
+      <a href="#" class="nav-link">الطلبات</a>
+      <a href="#" class="nav-link">العقود</a>
+      <a href="#" class="nav-link">التقارير</a>
+      <a href="contact.html" class="nav-link nav-cta">اتصل بنا</a>
+    </nav>
+
+    <div class="header-actions">
+      <!-- يبقى ظاهر في الموبايل كزر سريع -->
+      <a class="btn ghost btn-ripple quick-contact" href="contact.html">اتصل بنا</a>
+      <button class="btn ghost btn-ripple desktop-only" type="button">تسجيل الدخول</button>
+      <button class="btn primary btn-shine btn-ripple desktop-only" type="button">إنشاء طلب</button>
+
+      <!-- Burger (Mobile) -->
+      <button class="burger" id="burgerBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ✅ Mobile Drawer + Backdrop -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="قائمة الموبايل">
+    <div class="drawer-head">
+      <div class="drawer-brand">
+        <img
+          class="drawer-logo"
+          src="media/download.jpg"
+          alt="شعار مواردي"
+          loading="lazy"
+          onerror="this.hidden=true; this.parentElement.querySelector('.drawer-badge').style.display='grid';"
+        />
+        <span class="drawer-badge" style="display:none;">م</span>
+        <div class="drawer-text">
+          <div class="drawer-name">مواردي</div>
+          <div class="drawer-sub">إدارة شركات توريد العمالة</div>
+        </div>
+      </div>
+
+      <button class="close" id="closeDrawer" type="button" aria-label="إغلاق القائمة">
+        ✕
+      </button>
+    </div>
+
+    <nav class="drawer-nav" aria-label="قائمة الموبايل">
+      <a href="index.html" class="drawer-link active">الرئيسية</a>
+      <a href="#" class="drawer-link">شركات التوريد</a>
+      <a href="#" class="drawer-link">الطلبات</a>
+      <a href="#" class="drawer-link">العقود</a>
+      <a href="#" class="drawer-link">التقارير</a>
+      <a href="contact.html" class="drawer-link drawer-cta">اتصل بنا</a>
+    </nav>
+
+    <div class="drawer-actions">
+      <button class="btn ghost btn-ripple" type="button">تسجيل الدخول</button>
+      <button class="btn primary btn-shine btn-ripple" type="button">إنشاء طلب</button>
+    </div>
+
+    <div class="drawer-footer">
+      <span>© مواردي</span>
+      <span style="opacity:.85;">واجهة تجريبية</span>
+    </div>
+  </aside>
+
+  <style>
+    :root{
+      --bg:#f5f9ff;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#64748b;
+      --border: rgba(2, 44, 92, 0.12);
+      --shadow: 0 12px 30px rgba(2, 44, 92, 0.10);
+      --grad: linear-gradient(135deg, #0b5ed7, #4dabf7, #0b5ed7);
+      --ring: 0 0 0 4px rgba(77,171,247,.22);
+    }
+
+    .site-header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(2,44,92,.18);
+      overflow: clip;
+      background: var(--grad);
+      background-size: 220% 220%;
+      animation: headerGradient 10s ease-in-out infinite;
+    }
+
+    /* خلفية متحركة خفيفة */
+    .site-header::before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 60%);
+      animation: floatBlob 6s ease-in-out infinite;
+      pointer-events:none;
+      opacity: .9;
+    }
+    .site-header::after{
+      content:"";
+      position:absolute;
+      inset:auto auto -140px -140px;
+      width: 360px;
+      height: 360px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 60% 50%, rgba(255,255,255,.16), transparent 60%);
+      animation: floatBlob2 8s ease-in-out infinite;
+      pointer-events:none;
+      opacity: .8;
+    }
+
+    @keyframes headerGradient{
+      0%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
+      100%{ background-position: 0% 50%; }
+    }
+    @keyframes floatBlob{
+      0%,100%{ transform: translateY(0) translateX(0) rotate(0deg); }
+      50%{ transform: translateY(16px) translateX(-10px) rotate(8deg); }
+    }
+    @keyframes floatBlob2{
+      0%,100%{ transform: translateY(0) translateX(0) rotate(0deg); }
+      50%{ transform: translateY(-14px) translateX(10px) rotate(-8deg); }
+    }
+
+    .header-wrap{
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      text-decoration:none;
+      color:#fff;
+      min-width: 180px;
+      transform: translateZ(0);
+    }
+
+    .brand-logo{
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+      box-shadow: 0 10px 22px rgba(2,44,92,.18);
+      transition: transform .25s ease, filter .25s ease, box-shadow .25s ease;
+      flex: 0 0 auto;
+    }
+    .brand:hover .brand-logo{
+      transform: translateY(-2px) rotate(-2deg);
+      filter: brightness(1.04);
+      box-shadow: 0 14px 26px rgba(2,44,92,.22);
+    }
+
+    .brand-badge{
+      width: 42px;
+      height: 42px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.25);
+      font-weight: 900;
+      font-size: 18px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+      animation: badgePulse 2.8s ease-in-out infinite;
+    }
+    @keyframes badgePulse{
+      0%,100%{ transform: scale(1); }
+      50%{ transform: scale(1.04); }
+    }
+
+    .brand-name{ font-weight: 900; line-height: 1.1; font-size: 18px; }
+    .brand-sub{ font-size: 12px; opacity: .92; line-height: 1.1; }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-link{
+      position: relative;
+      color:#fff;
+      text-decoration:none;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      transition: .25s;
+      opacity: .92;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .nav-link::after{
+      content:"";
+      position:absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 6px;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(255,255,255,.85);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .25s ease;
+      opacity: .9;
+    }
+    .nav-link:hover{ background: rgba(255,255,255,.18); opacity: 1; transform: translateY(-1px); }
+    .nav-link:hover::after{ transform: scaleX(1); }
+    .nav-link.active{ background: rgba(255,255,255,.22); opacity: 1; }
+    .nav-link.active::after{ transform: scaleX(1); }
+
+    .nav-cta{
+      background: rgba(255,255,255,.22);
+      opacity: 1;
+      font-weight: 900;
+    }
+
+    .header-actions{ display:flex; align-items:center; gap: 10px; }
+
+    .btn{
+      position: relative;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 14px;
+      cursor:pointer;
+      transition: transform .2s ease, background .25s ease, box-shadow .25s ease;
+      line-height: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); box-shadow: 0 10px 18px rgba(2,44,92,.18); }
+    .btn:active{ transform: translateY(0px) scale(.98); }
+    .btn:focus{ outline: none; box-shadow: var(--ring); }
+
+    .btn.primary{
+      background: rgba(255,255,255,.92);
+      color:#0b5ed7;
+      border-color: rgba(255,255,255,.55);
+      font-weight: 800;
+    }
+    .btn.primary:hover{ background:#fff; }
+    .btn.ghost{ background: rgba(255,255,255,.10); }
+
+    .btn-shine::before{
+      content:"";
+      position:absolute;
+      top:-30%;
+      left:-60%;
+      width: 50%;
+      height: 160%;
+      transform: skewX(-18deg);
+      background: rgba(255,255,255,.55);
+      opacity: 0;
+    }
+    .btn-shine:hover::before{
+      animation: shineMove .65s ease forwards;
+      opacity: 1;
+    }
+    @keyframes shineMove{
+      0%{ left:-60%; opacity: .0; }
+      25%{ opacity: .35; }
+      100%{ left:120%; opacity: 0; }
+    }
+
+    .burger{
+      display:none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12);
+      cursor:pointer;
+      align-items:center;
+      justify-content:center;
+      gap: 5px;
+      flex-direction: column;
+      transition: transform .2s ease, background .25s ease;
+    }
+    .burger:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    .burger span{ width: 18px; height: 2px; background: #fff; border-radius: 2px; opacity: .95; transition: .25s; }
+
+    /* ✅ Drawer styles */
+    .backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(2,44,92,.45);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .25s ease, visibility .25s ease;
+      z-index: 60;
+    }
+    .backdrop.open{
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .drawer{
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100dvh;
+      width: min(86vw, 360px);
+      background: linear-gradient(180deg, rgba(11,94,215,.98), rgba(77,171,247,.92));
+      border-left: 1px solid rgba(255,255,255,.18);
+      box-shadow: -20px 0 50px rgba(2,44,92,.28);
+      transform: translateX(110%);
+      transition: transform .35s ease;
+      z-index: 70;
+      display:flex;
+      flex-direction: column;
+      padding: 14px;
+      gap: 12px;
+      overflow: hidden;
+    }
+    .drawer.open{ transform: translateX(0); }
+
+    .drawer::before{
+      content:"";
+      position:absolute;
+      inset: -120px -120px auto auto;
+      width: 320px;
+      height: 320px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 60%);
+      animation: floatBlob 6s ease-in-out infinite;
+      pointer-events:none;
+      opacity: .85;
+    }
+    .drawer::after{
+      content:"";
+      position:absolute;
+      inset:auto auto -140px -140px;
+      width: 360px;
+      height: 360px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 60% 50%, rgba(255,255,255,.14), transparent 60%);
+      animation: floatBlob2 8s ease-in-out infinite;
+      pointer-events:none;
+      opacity: .75;
+    }
+
+    .drawer-head{
+      position: relative;
+      z-index: 1;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 6px;
+    }
+
+    .drawer-brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      color:#fff;
+      text-decoration:none;
+      min-width: 0;
+    }
+
+    .drawer-logo{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.14);
+      box-shadow: 0 12px 24px rgba(2,44,92,.18);
+      flex: 0 0 auto;
+    }
+    .drawer-badge{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.22);
+      font-weight: 900;
+    }
+
+    .drawer-text{ min-width: 0; }
+    ..drawer-name{ font-weight: 900; font-size: 16px; line-height: 1.1; }
+    .drawer-name{ font-weight: 900; font-size: 16px; line-height: 1.1; }
+    .drawer-sub{ font-size: 12px; opacity: .92; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .close{
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      cursor:pointer;
+      transition: transform .2s ease, background .25s ease;
+      display:grid;
+      place-items:center;
+      font-size: 18px;
+      position: relative;
+      z-index: 1;
+    }
+    .close:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    .close:active{ transform: translateY(0) scale(.98); }
+
+    .drawer-nav{
+      position: relative;
+      z-index: 1;
+      display:grid;
+      gap: 8px;
+      padding: 6px;
+    }
+
+    .drawer-link{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      color:#fff;
+      text-decoration:none;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      transition: transform .2s ease, background .25s ease;
+      font-weight: 800;
+    }
+    .drawer-link:hover{ background: rgba(255,255,255,.18); transform: translateY(-1px); }
+    .drawer-link.active{ background: rgba(255,255,255,.18); }
+
+    .drawer-cta{
+      background: rgba(255,255,255,.18);
+      font-weight: 900;
+    }
+
+    .drawer-actions{
+      position: relative;
+      z-index: 1;
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 6px;
+      margin-top: auto;
+    }
+
+    .drawer-footer{
+      position: relative;
+      z-index: 1;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 8px 4px;
+      color: rgba(255,255,255,.92);
+      font-size: 12px;
+      border-top: 1px solid rgba(255,255,255,.16);
+    }
+
+    /* Ripple */
+    .ripple{
+      position:absolute;
+      border-radius: 999px;
+      transform: scale(0);
+      animation: ripple .55s ease-out;
+      background: rgba(255,255,255,.55);
+      pointer-events:none;
+      mix-blend-mode: overlay;
+    }
+    @keyframes ripple{
+      to{ transform: scale(3); opacity: 0; }
+    }
+
+    /* Responsive behavior */
+    @media (max-width: 980px){
+      .nav{ display:none; }
+      .burger{ display:flex; }
+      .desktop-only{ display:none !important; }
+      .quick-contact{ display:inline-flex; }
+    }
+    @media (min-width: 981px){
+      .quick-contact{ display:none; }
+      .backdrop, .drawer{ display:none; }
+    }
+    @media (max-width: 520px){
+      .brand-sub{ display:none; }
+      .brand{ min-width: auto; }
+      .brand-logo{ width: 40px; height: 40px; border-radius: 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .site-header{ animation: none; }
+      .site-header::before,.site-header::after{ animation: none; }
+      .brand-badge{ animation: none; }
+      .brand-logo{ transition: none; }
+      .btn,.nav-link,.burger,.drawer,.drawer-link,.close{ transition: none; }
+      .drawer::before,.drawer::after{ animation: none; }
+    }
+  </style>
+
+  <script>
+    (function(){
+      const burger = document.getElementById('burgerBtn');
+      const drawer = document.getElementById('drawer');
+      const backdrop = document.getElementById('backdrop');
+      const closeBtn = document.getElementById('closeDrawer');
+      if(!burger || !drawer || !backdrop || !closeBtn) return;
+
+      function openDrawer(){
+        burger.setAttribute('aria-expanded','true');
+        drawer.classList.add('open');
+        backdrop.classList.add('open');
+        document.documentElement.style.overflow = 'hidden'; // منع سكرول الخلفية
+        // فوكس على أول عنصر
+        const firstLink = drawer.querySelector('a,button');
+        if(firstLink) firstLink.focus({preventScroll:true});
+      }
+
+      function closeDrawer(){
+        burger.setAttribute('aria-expanded','false');
+        drawer.classList.remove('open');
+        backdrop.classList.remove('open');
+        document.documentElement.style.overflow = '';
+        burger.focus({preventScroll:true});
+      }
+
+      burger.addEventListener('click', () => {
+        const isOpen = burger.getAttribute('aria-expanded') === 'true';
+        if(isOpen) closeDrawer();
+        else openDrawer();
+      });
+
+      closeBtn.addEventListener('click', closeDrawer);
+      backdrop.addEventListener('click', closeDrawer);
+
+      // اغلاق عند الضغط Escape
+      document.addEventListener('keydown', (e) => {
+        const isOpen = burger.getAttribute('aria-expanded') === 'true';
+        if(!isOpen) return;
+        if(e.key === 'Escape') closeDrawer();
+      });
+
+      // اغلاق عند تغيير الحجم للكمبيوتر
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 980) closeDrawer();
+      });
+
+      // اغلاق عند اختيار رابط من القائمة
+      drawer.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => closeDrawer());
+      });
+
+      // Ripple
+      document.querySelectorAll('.btn-ripple').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+          ripple.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+          btn.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 650);
+        });
+      });
+    })();
+  </script>
+</header>
